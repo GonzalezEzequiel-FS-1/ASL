@@ -1,4 +1,4 @@
-FROM c:latest
+FROM gcc:latest
 WORKDIR /usr/src/app
 COPY . .
-CMD ["node", "app.js"]
+CMD ["runc","helloasl.exe"]
