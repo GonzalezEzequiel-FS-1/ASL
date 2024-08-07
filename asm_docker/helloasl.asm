@@ -1,3 +1,4 @@
+;Working!!!
 section .data
     hello db 'Hello ASL!',0xA
     date db 'Today is 2024-08-06',0xA
