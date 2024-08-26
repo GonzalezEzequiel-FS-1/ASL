@@ -1,8 +1,14 @@
 // Load in our Express framework
-const express       = require(`express`)
+const express = require(`express`)
 
 // Create a new Express instance called "app"
-const app           = express()
+const app = express()
+
+// ***Loading Twig***
+app.set('views', __dirname + './src/views')
+
+// **Set Twig as our rendering agent***
+app.set('view engine', 'twig' )
 
 // ***Load the JSON body parser***
 app.use(express.json());
@@ -14,6 +20,7 @@ app.get('/', (req, res) => {
   res
     .status(200)
     .send('Welcome to Star Tracker Library')
+    .render('home')
 })
 
 // Register our RESTful routers with our "app"
