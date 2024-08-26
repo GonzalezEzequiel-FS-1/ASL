@@ -2,7 +2,7 @@
 const express = require(`express`)
 
 //Loading Models:
-const galaxyCtrl =require('./controllers/galaxy.js')
+const { Galaxies } =require('./src/models/')
 
 // Create a new Express instance called "app"
 const app = express()
@@ -19,13 +19,13 @@ app.use(express.json());
 const routers = require('./routers/index.js')
 
 // Home page welcome middleware
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   const id = req.params.id;
-  const galaxy = Galaxy.fidByPk(4);
+  const galaxy = await Galaxies.findByPk(1);
   res
    // .status(200)
   //  .send('Welcome to Star Tracker Library')
-    .render('home',{ Galaxy  }
+    .render('home',{ galaxy  }
     )
 })
 
