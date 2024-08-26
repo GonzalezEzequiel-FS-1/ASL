@@ -1,11 +1,14 @@
 // Load in our Express framework
 const express = require(`express`)
 
+//Loading Models:
+const galaxyCtrl =require('./controllers/galaxy.js')
+
 // Create a new Express instance called "app"
 const app = express()
 
 // ***Loading Twig***
-app.set('views', __dirname + './src/views')
+app.set('views', __dirname + '/src/views')
 
 // **Set Twig as our rendering agent***
 app.set('view engine', 'twig' )
@@ -17,10 +20,13 @@ const routers = require('./routers/index.js')
 
 // Home page welcome middleware
 app.get('/', (req, res) => {
+  const id = req.params.id;
+  const galaxy = Galaxy.fidByPk(4);
   res
-    .status(200)
-    .send('Welcome to Star Tracker Library')
-    .render('home')
+   // .status(200)
+  //  .send('Welcome to Star Tracker Library')
+    .render('home',{ Galaxy  }
+    )
 })
 
 // Register our RESTful routers with our "app"
