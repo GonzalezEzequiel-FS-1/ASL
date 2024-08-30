@@ -2,7 +2,14 @@ const { Galaxies } = require("../src/models");
 //const { Galaxy } = require("../src/models/index.js");
 const index = async (req, res) => {
   const galaxies = await Galaxies.findAll();
-  res.render("home/galaxies/index.twig", { galaxies });
+  try {
+    res.render("galaxies/index.twig", { galaxies });
+  } catch (error) {
+    res.status(500).send({
+      succeed: false,
+      message: `${req.method} failed, consult error >>> ${error}`,
+    });
+  }
 };
 
 const show = async (req, res) => {

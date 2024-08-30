@@ -25,7 +25,7 @@ const routers = require("./routers/index.js");
 
 // Home page welcome middleware
 app.get("/", async (req, res) => {
-  const galaxy = await Galaxies.findByPk(1);
+  /*  const galaxy = await Galaxies.findByPk(1);
   try {
     res.render("home/home.twig", { galaxy });
   } catch (error) {
@@ -33,7 +33,8 @@ app.get("/", async (req, res) => {
       success: false,
       message: `${req.method}failed, consult error >>>${error}`,
     });
-  }
+  }*/
+  //res.render("home/home.twig");
 });
 
 // Register our RESTful routers with our "app"
