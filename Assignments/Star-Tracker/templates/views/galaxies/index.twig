@@ -7,7 +7,7 @@
   <ul>
     {% for galaxy in galaxies %}
       <li>
-        {{ galaxy.title }} - 
+        <p>{{ galaxy.name }}</p> - 
           <a href='/galaxies/{{galaxy.id}}'> Show </a> | 
           <a href='/galaxies/{{galaxy.id}}/edit'> Edit </a> | 
           <a href='/galaxies/{{galaxy.id}}/delete'> Delete </a> | 

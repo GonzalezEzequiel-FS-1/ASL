@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset = "UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"
-      <title>Advanced Server-side Languages - {% block pageName %}{% endblock %}</title>
-      </head>
-      <link rel="stylesheet" href="../../styles/styles.css"
-      <body>
-        {% include '../partials/_header.twig' %}
-        <main id="app">
-          {% block main %}{% endblock %}
-        </main>
-        {% include "../partials/_footer.twig" %}
-      </body>
-  </html>
-
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Server-side Languages - {% block pageName %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+</head>
+<body>
+  {# {% include '../partials/_header.twig' %} #}
+  <main id="app">
+    {% block main %}{% endblock %}
+  </main>
+  {# {% include "../partials/_footer.twig" %} #}
+</body>
+</html>
