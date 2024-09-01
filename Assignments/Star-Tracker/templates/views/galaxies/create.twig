@@ -1,7 +1,8 @@
-<h1>Create New Galaxy</h1>
-<p>from views/galaxy/create.twig</p>
+{% extends '../../layouts/base.twig' %}
 {% block pageName %}Create New Galaxy{% endblock %}
 
 {% block main %}
-	{% include "views/galaxy/_form.twig" %}
+  <h1>Create New Galaxy</h1>
+  <p>Hello from views/galaxy/crete.twig</p>
+{% include "views/galaxy/_form.twig" %}
 {% endblock %}

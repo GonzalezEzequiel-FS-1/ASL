@@ -3,14 +3,16 @@
 {% block pageName %}View all Galaxies{% endblock %}
 
 {% block main %}
-  <h1>All Galaxies</h1>
+  <h1 class="maintext">All Galaxies</h1>
   <ul>
     {% for galaxy in galaxies %}
       <li>
-        <p>{{ galaxy.name }}</p> - 
-          <a href='/galaxies/{{galaxy.id}}'> Show </a> | 
-          <a href='/galaxies/{{galaxy.id}}/edit'> Edit </a> | 
-          <a href='/galaxies/{{galaxy.id}}/delete'> Delete </a> | 
+        <p class="maintext" >{{ galaxy.name }}</p>
+        <div class="btnCont">
+          <a href='/galaxies/{{galaxy.id}}'> Show </a>
+          <a href='/galaxies/{{galaxy.id}}/edit'> Edit </a>
+          <a href='/galaxies/{{galaxy.id}}/delete' > Delete </a>
+        </div>
       </li>
     {% endfor %}
   </ul>

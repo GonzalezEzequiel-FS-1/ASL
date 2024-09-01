@@ -1,12 +1,18 @@
+  {% extends '../../layouts/base.twig' %}
+{% block pageName %}Show Galaxies{% endblock %}
+{% block main %}
     <strong>Name:</strong>
     <p>{{ galaxy.name }}</p>
-    <strong class="title">Size</strong>
+    
+    <strong class="title">Size:</strong>
     <p>{{ galaxy.size }}</p>
-    <strong>Descripiton:</strong>
-    <p>{{ galaxy.description }}</p>
+    
+    <strong>Description:</strong>
+    <p class="description">{{ galaxy.description }}</p>
 
     <div>
         <a href="/galaxies/{{ galaxy.id }}/edit">Edit Galaxy</a>
         <a href="/galaxies/{{ galaxy.id }}/delete">Delete Galaxy</a>
         <a href="/galaxies">&lt;&lt; Go Back</a>
     </div>
+{% endblock %}  

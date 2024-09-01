@@ -1,20 +1,25 @@
+{% extends "../../layouts/base.twig" %}
+{% block pageName %}Create/Edit{% endblock %}
+
+
+{% block main %}
 <form action="{% if galaxy is defined %}/galaxies/{{ galaxy.id }}{% else %}/galaxies{% endif %}" method="POST">
     {% if galaxy is defined %}
         <input type="hidden" name="_method" value="PUT">
     {% endif %}
 
     <div class="control">
-        <label>Name:</label>
+        <label class="maintext" >Name:</label>
         <input type="text" name="name" {% if galaxy is defined %} value="{{ galaxy.name }}" {% endif %} required/>
     </div>
 
     <div class="control">
-        <label>Size:</label>
+        <label class="maintext">Size:</label>
         <input type="text" name="size" {% if galaxy is defined %} value="{{ galaxy.size }}" {% endif %} required/>
     </div>
 
     <div class="control">
-        <label>Description:</label>
+        <label  class="maintext">Description:</label>
         <textarea name="description" required>
             {% if galaxy is defined %}
                 {{ galaxy.description }}
@@ -28,3 +33,4 @@
     </button>
     <a href="/galaxies">Go Back</a>
 </form>
+{% endblock %}

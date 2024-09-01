@@ -1,12 +1,19 @@
 // Load in our Express framework
 const express = require(`express`);
-
+const app = express();
 // ***Load Path***
-const path = require('path')
+const path = require("path");
 
 // Load DotEnv
 const dotenv = require("dotenv");
 dotenv.config();
+
+// ***Loading Twig***
+app.set("view engine", "twig");
+app.set("views", __dirname + "/templates/views/");
+
+// *** Loading Stylesheets ***
+app.use(express.static(path.join(__dirname, "/public")));
 
 // Set Port with DotEnv
 const PORT = process.env.PORT || 3000;
@@ -14,20 +21,7 @@ const PORT = process.env.PORT || 3000;
 // Loading Models:
 const { Galaxies } = require("./src/models/");
 
-// Create a new Express instance called "app"
-const app = express();
-
-// *** Loading Stylesheets ***
-app.use(express.static(path.join(__dirname, 'public')));
-
-// ***Loading Twig***
-app.set("view engine", "twig");
-app.set("views", __dirname + "/templates/views/");
-
-
-
 // ***Load the URL-encoded body parser***
-// This middleware is necessary to parse form data (application/x-www-form-urlencoded)
 app.use(express.urlencoded({ extended: true }));
 
 // ***Load the JSON body parser***
@@ -50,8 +44,7 @@ app.get("/", async (req, res) => {
       message: `${req.method} failed, consult error >>> ${error}`,
     });
   }
-  */
-  res.render("home/home.twig");
+  res.render("home/home.twig");*/
 });
 
 // Register our RESTful routers with our "app"
