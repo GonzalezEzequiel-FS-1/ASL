@@ -12,10 +12,6 @@ dotenv.config();
 app.set("view engine", "twig");
 app.set("views", __dirname + "/templates/views/");
 
-// Load fileupload
-const fileUpload = require("express-fileupload");
-app.use(fileUpload());
-
 // *** Loading Stylesheets ***
 app.use(express.static(path.join(__dirname, "/public")));
 
