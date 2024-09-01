@@ -61,8 +61,19 @@ const show = async (req, res) => {
 };
 
 // Create a new resource
-const create = async (req, res) => {
+const create = async (req, res, next) => {
+  
+  const image = await Image.create(req.body)
+
+  // Sets a pretext "imageId" for our upload middleware
+  req.imageId = image.id
+
+  // Invoke our upload middleware with next()
+  next()
+  res.redirect('/images/' + image.id)
+
   const { name, size, description } = req.body;
+
   if (!name || !size || !description) {
     return res.status(400).send({
       success: false,
@@ -89,7 +100,20 @@ const create = async (req, res) => {
 };
 
 // Update an existing resource
-const update = async (req, res) => {
+const update = async (req, res, next) => {
+
+  const image = await Image.update(req.body, {
+    where: { id: req.params.id }
+  })
+
+  // Sets a pretext "imageId" for our upload middleware
+  req.imageId = req.params.id
+
+  // Invoke our upload middleware with next()
+  next()
+
+  res.redirect('/images/' + req.params.id)
+
   const id = req.params.id;
   const { name, size, description } = req.body;
   if (!id) {
@@ -154,6 +178,5 @@ const remove = async (req, res) => {
     });
   }
 };
-
 // Export all controller actions
 module.exports = { index, show, create, update, remove };

@@ -1,36 +1,86 @@
 {% extends "../../layouts/base.twig" %}
-{% block pageName %}Create/Edit{% endblock %}
+{% block pageName %}Create/Edit
+{% endblock %}
 
 
 {% block main %}
-<form action="{% if galaxy is defined %}/galaxies/{{ galaxy.id }}{% else %}/galaxies{% endif %}" method="POST">
-    {% if galaxy is defined %}
-        <input type="hidden" name="_method" value="PUT">
-    {% endif %}
+	<form action="{% if galaxy is defined %}/galaxies/{{ galaxy.id }}{% else %}/galaxies{% endif %}" method="POST">
+		{% if galaxy is defined %}
+			<input type="hidden" name="_method" value="PUT">
+		{% endif %}
 
-    <div class="control">
-        <label class="maintext" >Name:</label>
-        <input type="text" name="name" {% if galaxy is defined %} value="{{ galaxy.name }}" {% endif %} required/>
-    </div>
+		<div class="control">
+			<label class="maintext">Name:</label>
+			<input type="text" name="name" {% if galaxy is defined %} value="{{ galaxy.name }}" {% endif %} required/>
+		</div>
 
-    <div class="control">
-        <label class="maintext">Size:</label>
-        <input type="text" name="size" {% if galaxy is defined %} value="{{ galaxy.size }}" {% endif %} required/>
-    </div>
+		<div class="control">
+			<label class="maintext">Size:</label>
+			<input type="text" name="size" {% if galaxy is defined %} value="{{ galaxy.size }}" {% endif %} required/>
+		</div>
 
-    <div class="control">
-        <label  class="maintext">Description:</label>
-        <textarea name="description" required>
-            {% if galaxy is defined %}
-                {{ galaxy.description }}
-            {% endif %}
-        </textarea>
-    </div>
+		<div class="control">
+			<label class="maintext">Description:</label>
+			<textarea name="description" required>
+				{% if galaxy is defined %}
+					{{ galaxy.description }}
+				{% endif %}
+			</textarea>
+		</div>
 
-    <button id="btn" type="submit">
-        {% if galaxy is defined %}Update{% else %}Create{% endif %}
-        Galaxy
-    </button>
-    <a href="/galaxies">Go Back</a>
-</form>
+		
+	</form>
+	<form enctype="multipart/form-data" method="POST" action="/images/{% if image.id %}{{ image.id }}{% endif %}">
+
+		{% if image.id %}
+
+			<input type="hidden" name="id" value="{{ image.id }}">
+
+		{% endif %}
+
+		{#<div>
+
+			<label class="maintext">Parent Variant:</label>
+
+			<select name="variantId">
+
+				<option class="maintext">Select Image...</option>
+
+				{% for variant in variants %}
+
+					<option value="{{ variant.id }}" {% if variant.id == image.variantId %} selected="selected" {% endif %}>
+
+						{{ variant.title }}
+
+					</option>
+
+				{% endfor %}
+
+			</select>
+
+		</div>#}
+
+		<div>
+
+			<label for="image" class="maintext" >Upload Image:</label>
+
+			<br/>
+
+			<input type="file" name="image" id="image"/>
+
+		</div>
+
+		<div>
+
+			<input type="submit" />
+
+		</div>
+
+	</form>
+  <button id="btn" type="submit" >
+			{% if galaxy is defined %}Update{% else %}Create
+			{% endif %}
+			Galaxy
+		</button>
+		<a href="/galaxies">Go Back</a>
 {% endblock %}
