@@ -1,5 +1,5 @@
 // Load in our Express framework
-const express = require(`express`);
+const express = require('express');
 const app = express();
 // ***Load Path***
 const path = require("path");
@@ -10,14 +10,14 @@ dotenv.config();
 
 // ***Loading Twig***
 app.set("view engine", "twig");
-app.set("views", __dirname + "/templates/views/");
+app.set("views", path.join(__dirname, "templates/views"));
 
 // Load fileupload
 const fileUpload = require("express-fileupload");
 app.use(fileUpload());
 
 // *** Loading Stylesheets ***
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Set Port with DotEnv
 const PORT = process.env.PORT || 3000;
@@ -52,9 +52,10 @@ app.get("/", async (req, res) => {
 });
 
 // Register our RESTful routers with our "app"
-app.use(`/planets`, routers.planet);
-app.use(`/stars`, routers.star);
-app.use(`/galaxies`, routers.galaxy);
+app.use('/planets', routers.planet);
+app.use('/stars', routers.star);
+app.use('/galaxies', routers.galaxy);
+app.use('/images', routers.image);  // Add this line to include the images router
 
 // Set our app to listen on the specified port
 app.listen(PORT, () => {

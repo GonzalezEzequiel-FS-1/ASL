@@ -6,7 +6,7 @@ const path = require('path')
 
 // Load in our Image Sequelize model
 
-const { Image } = require('../models')
+const { Image } = require('../src/models')
 
 // Defines the Express middleware that will upload our image
 
